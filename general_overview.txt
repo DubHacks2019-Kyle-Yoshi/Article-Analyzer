@@ -1,0 +1,8 @@
+Web application where user enters a URL
+
+App crawls the URL and extracts text
+
+App sends text to Google AI API to get "insight" of text
+
+App assigns tags on how the article is supposed to make you feel
+
