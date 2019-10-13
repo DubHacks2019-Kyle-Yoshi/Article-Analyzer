@@ -1,5 +1,9 @@
 runtime: python37
+default_expiration: "3s"
 handlers:
+- url: /static
+  static_dir: static
+
 - url: /.*
   secure: always
   script: auto

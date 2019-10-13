@@ -1,15 +1,20 @@
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <html>
     <body>
-        <table>
-            <tr>
-                <th>Magnitude</th>
+       <table>
+           <tr>
                 <th>Score</th>
+                <th>Sentiment</th>
                 <th>Ranking</th>
             </tr>
             <tr>
                 <td>{{ sentiment[0] }}</td>
                 <td>{{ sentiment[1] }}</td>
-                <td>{{ sentiment[2] }}</td>
+                <td><i class="{{ sentiment[2] }}"></i></td>
             </tr>
         </table>
         <hr />
