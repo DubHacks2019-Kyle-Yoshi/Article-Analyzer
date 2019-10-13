@@ -9,6 +9,11 @@ from google.cloud.language import types
 app = Flask(__name__)
 
 
+smiley = ""
+frowny = ""
+meh = ""
+
+
 @app.route('/handledata', methods=['POST'])
 def handle_data():
     url = request.form['url']
@@ -16,8 +21,16 @@ def handle_data():
     with urllib.request.urlopen(url) as fp:
         html = fp.read()
     sent_str = get_sentiment(html.decode())
+    str_to_template = [round(sent_str.magnitude, 2), round(sent_str.score, 2), '']
 
-    return render_template('show_results.html', sentiment=sent_str)
+    if str_to_template[0] < -.14:
+        str_to_template[2] = frowny
+    elif str_to_template[0] > .14:
+        str_to_template[2] = smiley
+    else:
+        str_to_template[2] = meh
+
+    return render_template('show_results.html', sentiment=str_to_template)
 
 
 @app.route('/')
