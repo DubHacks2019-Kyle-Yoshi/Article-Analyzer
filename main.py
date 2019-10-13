@@ -18,6 +18,13 @@ meh = "meh"
 def handle_data():
     url = request.form['url']
 
+    if len(url) < 5:
+        return """
+            Sorry, this URL cannot be processed
+            <br />
+            <a href="/">Go Back</a>
+        """
+
     # Check if http in from of url or not
     if url[:4] != "http":
         url = "https://" + url
