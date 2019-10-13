@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import Flask, request, render_template
 import urllib.request
 import requests as rq
