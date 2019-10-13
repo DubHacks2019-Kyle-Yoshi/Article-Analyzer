@@ -18,7 +18,7 @@ def handle_data():
         html = fp.read()
 #        soup = BeautifulSoup(fp, "html.parser")
 #    text = soup.get_text()
-    get_sentiment(html)
+    get_sentiment(html.decode())
 
     return render_template('show_results.html')
 
