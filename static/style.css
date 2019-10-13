@@ -16,13 +16,16 @@ input[type=text] {
     width:100%;
     border-radius:2px;
     margin:auto;
-    border:2px solid black;
+    border:0px;
     background:lightgrey;
 }
 
-input[type=text]:hover {
-    background:lightgreen;
-    border:green;
+input[type=text] {
+    width:100%;
+    border-radius:2px;
+    margin:auto;
+    border:0px;
+    background:lightgrey;
 }
 
 
