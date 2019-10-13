@@ -1,4 +1,5 @@
 __pycache__
+.gitignore
 env/
 notes.txt
-python-docs-samples/
+python-docs-samples
