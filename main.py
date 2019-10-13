@@ -14,16 +14,20 @@ frowny = "frown"
 meh = "meh"
 
 
+def failed():
+    return """
+            Sorry, this URL cannot be processed
+            <br />
+            <a class="back" href="/">Go Back</a>
+        """
+
+
 @app.route('/handledata', methods=['POST'])
 def handle_data():
     url = request.form['url']
 
     if len(url) < 5:
-        return """
-            Sorry, this URL cannot be processed
-            <br />
-            <a href="/">Go Back</a>
-        """
+        return failed()
 
     # Check if http in from of url or not
     if url[:4] != "http":
@@ -34,19 +38,11 @@ def handle_data():
     try:
         sent_str = get_sentiment(html.decode())
     except:
-        return """
-        Sorry, this URL cannot be processed
-        <br />
-        <a href="/">Go Back</a>
-    """
+        return failed()
     try:
         classification = get_classification(html.decode())
     except:
-        return """
-        Sorry, this URL cannot be processed
-        <br />
-        <a href="/">Go Back</a>
-    """
+        return failed()
 
     str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
 
