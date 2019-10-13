@@ -47,6 +47,7 @@ input[type=submit]:hover {
 
 
 table {
+    text-align:center;
     margin:auto;
     width:30%;
     border-collapse:collapse;
