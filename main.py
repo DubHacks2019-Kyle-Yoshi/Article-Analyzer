@@ -32,25 +32,23 @@ def handle_data():
     with urllib.request.urlopen(url) as fp:
         html = fp.read()
     try:
-        language_data = get_sentiment(html.decode())
+        sent_str = get_sentiment(html.decode())
     except:
         return """
         Sorry, this URL cannot be processed
         <br />
         <a href="/">Go Back</a>
     """
+    str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
 
-
-    face = ""
-    if language_data.document_sentiment.score < -.14:
-        face = frowny
-    elif language_data.document_sentiment.score > .14:
-        face = smiley
+    if str_to_template[1] < -.14:
+        str_to_template[2] = frowny
+    elif str_to_template[1] > .14:
+        str_to_template[2] = smiley
     else:
-        face = meh
+        str_to_template[2] = meh
 
-    score = language_data.document_sentiment.score * language_data.document_sentiment.magnitude
-    return render_template('show_results.html', score=score, sent=language_data.document_dentiment.score, face=face)
+    return render_template('show_results.html', sentiment=str_to_template)
 
 
 @app.route('/')
@@ -69,5 +67,5 @@ def get_sentiment(html):
         type=enums.Document.Type.HTML)
     
     # Detects the sentiment of the text
-    return client.annotate_text(document=document)
+    return client.analyze_sentiment(document=document).document_sentiment
     
