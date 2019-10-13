@@ -39,8 +39,8 @@ input[type=submit] {
 
 input[type=submit]:hover {
     margin:auto;
-    color:white;
-    background-color:black;
+    color:black;
+    background-color:lightgreen;
     border-radius:8px;
     width:50%;
 }
