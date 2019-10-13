@@ -44,7 +44,7 @@ def handle_data():
     except:
         return failed()
 
-    str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
+    str_to_template = [round(sent_str.magnitude * sent_str.score, 4), round(sent_str.score, 3), '']
 
     bgcolor = "#f9f1f1"
     if str_to_template[1] < -.14:
