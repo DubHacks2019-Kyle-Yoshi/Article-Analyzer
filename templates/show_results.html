@@ -8,13 +8,16 @@
        <table>
            <tr>
                 <th>Score</th>
-                <th>Sentiment</th>
                 <th>Ranking</th>
+                <th>Classification</th>
             </tr>
             <tr>
                 <td>{{ sentiment[0] }}</td>
-                <td>{{ sentiment[1] }}</td>
                 <td><i class="fas fa-{{ sentiment[2] }}"></i></td>
+                <td class="classification">{% for classification in class_list %}
+                -{{ classification.name[1:] }}
+                <br />
+				{% endfor %}</td>
             </tr>
         </table>
         <hr />

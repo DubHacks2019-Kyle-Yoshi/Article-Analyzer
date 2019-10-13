@@ -39,6 +39,15 @@ def handle_data():
         <br />
         <a href="/">Go Back</a>
     """
+    try:
+        classification = get_classification(html.decode())
+    except:
+        return """
+        Sorry, this URL cannot be processed
+        <br />
+        <a href="/">Go Back</a>
+    """
+
     str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
 
     if str_to_template[1] < -.14:
@@ -48,7 +57,7 @@ def handle_data():
     else:
         str_to_template[2] = meh
 
-    return render_template('show_results.html', sentiment=str_to_template)
+    return render_template('show_results.html', sentiment=str_to_template, class_list=classification)
 
 
 @app.route('/')
@@ -68,4 +77,13 @@ def get_sentiment(html):
     
     # Detects the sentiment of the text
     return client.analyze_sentiment(document=document).document_sentiment
+    
+def get_classification(html):
+    client = language.LanguageServiceClient()
+
+    document = types.Document(
+        content=html,
+        type=enums.Document.Type.HTML)
+
+    return client.classify_text(document=document).categories
     
