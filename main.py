@@ -1,9 +1,11 @@
 from flask import Flask, request, render_template
-import urllib.request
+import requests
+#import urllib.request
 import requests as rq
 from google.cloud import language
 from google.cloud.language import enums
 from google.cloud.language import types
+from bs4 import BeautifulSoup
 
 
 app = Flask(__name__)
@@ -33,12 +35,16 @@ def handle_data():
     if url[:4] != "http":
         url = "https://" + url
 
-    with urllib.request.urlopen(url) as fp:
-        html = fp.read()
-    try:
-        sent_str = get_sentiment(html.decode())
-    except:
-        return failed()
+    #with urllib.request.urlopen(url) as fp:
+    #    html = fp.read()
+    #try:
+
+    page = requests.get(url)
+    soup = BeautifulSoup(page.conent, 'html.parser')
+    soup.prettify()
+    html = soup.get_text()
+
+    sent_str = get_sentiment(html.decode())
     try:
         classification = get_classification(html.decode())
     except:
@@ -73,7 +79,7 @@ def get_sentiment(html):
     #text = u'Hello, world!'
     document = types.Document(
         content=html,
-        type=enums.Document.Type.HTML)
+        type=enums.Document.Type.PLAIN_TEXT)
     
     # Detects the sentiment of the text
     return client.analyze_sentiment(document=document).document_sentiment
@@ -83,7 +89,7 @@ def get_classification(html):
 
     document = types.Document(
         content=html,
-        type=enums.Document.Type.HTML)
+        type=enums.Document.Type.PLAIN_TEXT)
 
     return client.classify_text(document=document).categories
     
