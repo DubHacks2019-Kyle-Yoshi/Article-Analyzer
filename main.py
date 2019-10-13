@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask import Flask, request, render_template
 import urllib.request
 import requests as rq
@@ -25,4 +26,3 @@ def handle_data():
 @app.route('/')
 def index():
     return render_template('index.html')
-
