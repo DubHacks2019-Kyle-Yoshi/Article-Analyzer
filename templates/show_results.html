@@ -9,18 +9,23 @@
            <tr>
                 <th>Score</th>
                 <th>Ranking</th>
-                <th>Classification</th>
             </tr>
             <tr>
                 <td>{{ sentiment[0] }}</td>
                 <td><i class="fas fa-{{ sentiment[2] }}"></i></td>
-                <td class="classification">{% for classification in class_list %}
-                -{{ classification.name[1:] }}
-                <br />
-				{% endfor %}</td>
             </tr>
         </table>
-        <hr />
+
+        <p />
+
+        <table>
+            <tr><th>Text Categories</th></tr>
+            {% for classification in class_list %}
+                <tr>
+                    <td>{{ classification.name[1:] }}</td>
+                </tr>
+            {% endfor %}
+
         <a href="/">Back</a>
     </body>
 </html>
