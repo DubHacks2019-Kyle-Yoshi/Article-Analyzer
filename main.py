@@ -9,18 +9,25 @@ from google.cloud.language import types
 app = Flask(__name__)
 
 
-smiley = "fas fa-smile"
-frowny = "fas fa-frown"
-meh = "fas fa-meh"
+smiley = "smile"
+frowny = "frown"
+meh = "meh"
 
 
 @app.route('/handledata', methods=['POST'])
 def handle_data():
     url = request.form['url']
 
+    # Check if http in from of url or not
+    if url[:4] != "http":
+        url = "https://" + url
+
     with urllib.request.urlopen(url) as fp:
         html = fp.read()
-    sent_str = get_sentiment(html.decode())
+    try:
+        sent_str = get_sentiment(html.decode())
+    except:
+        return "Sorry, this URL cannot be processed"
     str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
 
     if str_to_template[1] < -.14:
