@@ -1,11 +1,19 @@
 <html>
     <body>
-        magnitude: {{ sentiment.magnitute }}
-        <br />
-        score: {{ sentiment.score }}
-        <br />
-        <a href="/">Back</a>
+        <table>
+            <tr>
+                <th>Magnitude</th>
+                <th>Score</th>
+                <th>Ranking</th>
+            </tr>
+            <tr>
+                <th>{{ sentiment.magnitute }}</th>
+                <th>{{ sentiment.score }}</th>
+                <th>Smile Face Here</th>
+            </tr>
+        </table>
         <hr />
+        <a href="/">Back</a>
     </body>
 </html>
 

@@ -44,3 +44,15 @@ input[type=submit]:hover {
     border-radius:8px;
     width:50%;
 }
+
+
+table {
+    margin:auto;
+    width:30%;
+    border-collapse:collapse;
+}
+
+table, th, td {
+    border:0px;
+    text-align:center;
+}
