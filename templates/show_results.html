@@ -5,27 +5,32 @@
 </head>
 <html>
     <body>
-       <table>
+        <table>
            <tr>
                 <th>Score</th>
-                <th>Ranking</th>
             </tr>
             <tr>
                 <td>{{ sentiment[0] }}</td>
-                <td><i class="fas fa-{{ sentiment[2] }}"></i></td>
             </tr>
         </table>
-
-        <p />
-
+		<p  />
         <table>
-            <tr><th>Text Categories</th></tr>
+            <tr>
+                 <th>Ranking</th>
+             </tr>
+             <tr>
+                 <td><i class="fas fa-{{ sentiment[2] }}"></i></td>
+             </tr>
+         </table>
+         <p />
+        <table>
+			<tr><th>Text Categories</th></tr>
             {% for classification in class_list %}
                 <tr>
                     <td>{{ classification.name[1:] }}</td>
                 </tr>
             {% endfor %}
-
+      </table>
         <a class="back" href="/">Back</a>
     </body>
 </html>
