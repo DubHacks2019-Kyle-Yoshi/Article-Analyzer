@@ -1,0 +1,43 @@
+form {
+    padding-top:75px;
+    margin:auto;
+    width:30%;
+    text-align:center;
+}
+
+
+input {
+    padding:10px;
+    margin:10px;
+}
+
+
+input[type=text] {
+    width:100%;
+    border-radius:2px;
+    margin:auto;
+    border:2px solid black;
+    background:lightgrey;
+}
+
+input[type=text]:hover {
+    background:lightgreen;
+    border:green;
+}
+
+
+input[type=submit] {
+    margin:auto;
+    color:white;
+    background-color:green;
+    border-radius:8px;
+    width:50%;
+}
+
+input[type=submit]:hover {
+    margin:auto;
+    color:white;
+    background-color:black;
+    border-radius:8px;
+    width:50%;
+}
