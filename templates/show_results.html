@@ -1,7 +1,7 @@
 <head>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_new.css') }}">
 </head>
 <html>
     <body style="background-color:{{ bgcolor }}">
@@ -28,6 +28,15 @@
             {% for classification in class_list %}
                 <tr>
                     <td>- {{ classification.name[1:] }}</td>
+                </tr>
+            {% endfor %}
+      </table>
+         <p />
+        <table>
+			<tr><th>Text Entities</th></tr>
+            {% for entity in entity_list %}
+                <tr>
+                    <td>- {{ entity.name }}: {{ entity.sentiment.score }}</td>
                 </tr>
             {% endfor %}
       </table>
