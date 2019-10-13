@@ -46,14 +46,18 @@ def handle_data():
 
     str_to_template = [round(sent_str.magnitude * sent_str.score, 2), round(sent_str.score, 2), '']
 
+    bgcolor = "#f9f1f1"
     if str_to_template[1] < -.14:
         str_to_template[2] = frowny
+        bgcolor = "lightred"
     elif str_to_template[1] > .14:
         str_to_template[2] = smiley
+        bgcolor = "lightgreen"
     else:
         str_to_template[2] = meh
+        bgcolor = "lightgrey"
 
-    return render_template('show_results.html', sentiment=str_to_template, class_list=classification)
+    return render_template('show_results.html', sentiment=str_to_template, class_list=classification, bgcolor=bgcolor)
 
 
 @app.route('/')
